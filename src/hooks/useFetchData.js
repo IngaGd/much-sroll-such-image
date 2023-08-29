@@ -10,7 +10,7 @@ const useFetchData = (page) => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    `https://api.pexels.com/v1/curated?page=${page}&per_page=10`,
+                    `https://api.pexels.com/v1/curated?page=${page}&per_page=2`,
                     {
                         method: 'GET',
                         headers: { Authorization: apiKey },
