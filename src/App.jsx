@@ -1,12 +1,8 @@
-import './App.css';
+import '../src/style/main.scss';
 import ListOfImages from './components/ListOfImages';
 
 function App() {
-    return (
-        <div className="App">
-            <ListOfImages />
-        </div>
-    );
+    return <ListOfImages />;
 }
 
 export default App;

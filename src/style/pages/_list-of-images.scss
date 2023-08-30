@@ -1,0 +1,12 @@
+.image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    .image {
+        width: 35rem;
+        height: 30vh;
+        @include image-fit;
+        border-radius: 7px;
+    }
+}
