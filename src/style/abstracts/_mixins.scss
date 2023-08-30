@@ -11,14 +11,20 @@
         }
     }
     @if $breakpoint == tablet {
-        @media (min-width: 48em) {
+        @media (min-width: 48em) and (max-width: 68.7499em) {
             //768px
             @content;
         }
     }
+    // @if $breakpoint == tablet-land {
+    //     @media (min-width: 62em) {
+    //         //992px
+    //         @content;
+    //     }
+    // }
     @if $breakpoint == desktop {
-        @media (min-width: 62em) {
-            //992px
+        @media (min-width: 68.75em) {
+            //1100px
             @content;
         }
     }
