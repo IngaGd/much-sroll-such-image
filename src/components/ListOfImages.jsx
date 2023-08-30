@@ -12,18 +12,18 @@ export default function ListOfImages() {
     return (
         <section className="container">
             {imgSrc?.map((img, index) => (
-                <div key={img.id + '-' + index} className="image-box">
-                    <img
-                        src={img.src.medium}
-                        alt=""
-                        className="image-box__image"
-                    ></img>
-                    <figcaption className="image-box__caption">
-                        <p>{img.alt}</p>
-                        <div className="bottom-line"></div>
-                        <p>{img.photographer}</p>
-                        <button className="btn">Favourite</button>
-                    </figcaption>
+                <div key={img.id + '-' + index} className="images-list">
+                    <div className="image-box">
+                        <img src={img.src.medium} alt="" className="image" />
+                        <figcaption className="caption">
+                            <p className="image-description">{img.alt}</p>
+                            <div className="bottom-line"></div>
+                            <p className="image-photographer">
+                                {img.photographer}
+                            </p>
+                            <button className="btn">Favourite</button>
+                        </figcaption>
+                    </div>
                 </div>
             ))}
         </section>

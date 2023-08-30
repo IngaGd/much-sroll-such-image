@@ -1,8 +1,11 @@
 .btn {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    font-size: inherit;
     background-color: transparent;
     border: 1px solid $color-white;
-    padding: 10px 15px;
-    border-radius: 25px;
+    padding: 1.2rem 2rem;
+    border-radius: 2.5rem;
     color: inherit;
     cursor: pointer;
 }
