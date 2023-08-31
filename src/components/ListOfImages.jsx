@@ -1,13 +1,19 @@
-import React from 'react';
 import useFetchData from '../hooks/useFetchData';
 import useSrollToBottom from '../hooks/useSrollToBottom';
+import useSetItem from '../hooks/useSetItem';
 
 export default function ListOfImages() {
     const page = useSrollToBottom();
     const imgSrc = useFetchData(page);
+    const { images, addImage } = useSetItem();
 
     console.log('Page:', page);
     console.log('ImgSrc:', imgSrc);
+    console.log('Favoirite img: ', images);
+
+    const handleFavourite = (img) => {
+        addImage(img);
+    };
 
     return (
         <section className="container">
@@ -21,7 +27,12 @@ export default function ListOfImages() {
                             <p className="image-photographer">
                                 {img.photographer}
                             </p>
-                            <button className="btn">Favourite</button>
+                            <input
+                                className="btn"
+                                type="button"
+                                onClick={() => handleFavourite(img)}
+                                value="Favourite"
+                            />
                         </figcaption>
                     </div>
                 </div>
