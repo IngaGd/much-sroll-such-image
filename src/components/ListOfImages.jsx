@@ -17,6 +17,25 @@ export default function ListOfImages() {
 
     return (
         <section className="container">
+            {images?.map((img) => (
+                <div key={img.id} className="images-list">
+                    <div className="image-box">
+                        {' '}
+                        <img src={img.src.medium} alt="" className="image" />
+                        <figcaption className="caption liked">
+                            <p>Favourited</p>
+                        </figcaption>
+                        <figcaption className="caption-unlike">
+                            <button
+                                className="btn"
+                                // onClick={handleRemoveFavourited(img)}
+                            >
+                                Remove from favourites
+                            </button>
+                        </figcaption>
+                    </div>
+                </div>
+            ))}
             {imgSrc?.map((img, index) => (
                 <div key={img.id + '-' + index} className="images-list">
                     <div className="image-box">
@@ -27,12 +46,12 @@ export default function ListOfImages() {
                             <p className="image-photographer">
                                 {img.photographer}
                             </p>
-                            <input
+                            <button
                                 className="btn"
-                                type="button"
                                 onClick={() => handleFavourite(img)}
-                                value="Favourite"
-                            />
+                            >
+                                Favourite
+                            </button>
                         </figcaption>
                     </div>
                 </div>

@@ -3,11 +3,10 @@ import { useState } from "react";
 
 const useSetItem = () => {
 
-    const [images, setImages] = useState(JSON.parse(localStorage.getItem('images')) || []);
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
         localStorage.setItem('images', JSON.stringify(images));
-        // console.log('favourited: ', images);
     }, [images]);
 
     const addImage = (newImage) => {
