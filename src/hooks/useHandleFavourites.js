@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const useSetItem = () => {
+const useHandleFavourites = () => {
 
     const [images, setImages] = useState([]);
 
@@ -13,8 +13,12 @@ const useSetItem = () => {
         setImages(prevImages => [...prevImages, newImage]);
     }
 
-    return { images, addImage };
+    const removeImage = (imageIdToRemove) => {
+        setImages(prevImages => prevImages.filter(img => img.id !== imageIdToRemove));
+    }
+
+    return { images, addImage, removeImage };
 
 }
 
-export default useSetItem;
+export default useHandleFavourites;

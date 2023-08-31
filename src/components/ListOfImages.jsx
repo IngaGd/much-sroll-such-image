@@ -1,11 +1,11 @@
 import useFetchData from '../hooks/useFetchData';
 import useSrollToBottom from '../hooks/useSrollToBottom';
-import useSetItem from '../hooks/useSetItem';
+import useHandleFavourites from '../hooks/useHandleFavourites';
 
 export default function ListOfImages() {
     const page = useSrollToBottom();
     const imgSrc = useFetchData(page);
-    const { images, addImage } = useSetItem();
+    const { images, addImage, removeImage } = useHandleFavourites();
 
     console.log('Page:', page);
     console.log('ImgSrc:', imgSrc);
@@ -13,6 +13,10 @@ export default function ListOfImages() {
 
     const handleFavourite = (img) => {
         addImage(img);
+    };
+
+    const handleRemoveFavourited = (id) => {
+        removeImage(id);
     };
 
     return (
@@ -28,7 +32,7 @@ export default function ListOfImages() {
                         <figcaption className="caption-unlike">
                             <button
                                 className="btn"
-                                // onClick={handleRemoveFavourited(img)}
+                                onClick={() => handleRemoveFavourited(img.id)}
                             >
                                 Remove from favourites
                             </button>
