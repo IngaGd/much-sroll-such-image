@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 const apiKey = process.env.REACT_APP_PEXELS_API_KEY;
 
 const useFetchData = (page) => {
+    console.log("useFetchData initialized");
 
     const [imgSrc, setImgSrc] = useState([]);
 
     useEffect(() => {
+        console.log("useFetchData initialized");
+        console.log('Starting fetch for page:', page);
         const fetchData = async () => {
             try {
                 const response = await fetch(
@@ -20,7 +23,6 @@ const useFetchData = (page) => {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log(data);
                 if (data && data.photos) {
                     setImgSrc((prevImgSrc) => [...prevImgSrc, ...data.photos]);
                 }

@@ -1,15 +1,17 @@
-import useFetchData from '../hooks/useFetchData';
-import useSrollToBottom from '../hooks/useSrollToBottom';
-import useHandleFavourites from '../hooks/useHandleFavourites';
+import useFetchData from '../customHooks/useFetchData';
+import useSrollToBottom from '../customHooks/useSrollToBottom';
+import useHandleFavourites from '../customHooks/useHandleFavourites';
+import { useEffect } from 'react';
 
 export default function ListOfImages() {
     const page = useSrollToBottom();
     const imgSrc = useFetchData(page);
     const { images, addImage, removeImage } = useHandleFavourites();
 
-    console.log('Page:', page);
-    console.log('ImgSrc:', imgSrc);
-    console.log('Favoirite img: ', images);
+    useEffect(() => {
+        console.log('ListOfImages mounted');
+        return () => console.log('ListOfImages unmounted');
+    }, []);
 
     const handleFavourite = (img) => {
         addImage(img);

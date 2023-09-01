@@ -3,7 +3,10 @@ import { useState } from "react";
 
 const useHandleFavourites = () => {
 
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState(() => {
+        const storedImages = localStorage.getItem('images');
+        return storedImages ? JSON.parse(storedImages) : [];
+    });
 
     useEffect(() => {
         localStorage.setItem('images', JSON.stringify(images));
