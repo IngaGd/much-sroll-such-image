@@ -24,14 +24,19 @@ const useFetchData = (page) => {
                 }
                 const data = await response.json();
                 if (data && data.photos) {
-                    setFetchedImages((prevFetchedImages) => [...prevFetchedImages, ...data.photos]);
+
+                    const oldAndNewImages = [...fetchedImages, ...data.photos]
+
+                    const uniqueImages = oldAndNewImages.filter((img, index, self) =>
+                        index === self.findIndex((t) => (t.id === img.id)));
+                    setFetchedImages(uniqueImages);
                 }
             } catch (error) {
                 console.error('error fetching image:', error);
             }
         };
         fetchData();
-    }, [page]);
+    }, [page, fetchedImages]);
     return fetchedImages;
 }
 
