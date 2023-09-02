@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 export default function ListOfImages() {
     const page = useSrollToBottom();
     const fetchedImages = useFetchData(page);
-    const { images, addImage, removeImage } = useHandleFavourites();
+    const { favouritedImages, addImage, removeImage } = useHandleFavourites();
 
     useEffect(() => {
         console.log('ListOfImages mounted');
@@ -23,7 +23,7 @@ export default function ListOfImages() {
 
     return (
         <section className="container">
-            {images?.map((img) => (
+            {favouritedImages?.map((img) => (
                 <div key={img.id} className="images-list">
                     <div className="image-box">
                         {' '}

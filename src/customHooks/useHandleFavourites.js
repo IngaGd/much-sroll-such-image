@@ -3,24 +3,24 @@ import { useState } from "react";
 
 const useHandleFavourites = () => {
 
-    const [images, setImages] = useState(() => {
-        const storedImages = localStorage.getItem('images');
+    const [favouritedImages, setFavouritedImages] = useState(() => {
+        const storedImages = localStorage.getItem('favouritedImages');
         return storedImages ? JSON.parse(storedImages) : [];
     });
 
     useEffect(() => {
-        localStorage.setItem('images', JSON.stringify(images));
-    }, [images]);
+        localStorage.setItem('favouritedImages', JSON.stringify(favouritedImages));
+    }, [favouritedImages]);
 
     const addImage = (newImage) => {
-        setImages(prevImages => [...prevImages, newImage]);
+        setFavouritedImages(prevImages => [...prevImages, newImage]);
     }
 
     const removeImage = (imageIdToRemove) => {
-        setImages(prevImages => prevImages.filter(img => img.id !== imageIdToRemove));
+        setFavouritedImages(prevImages => prevImages.filter(img => img.id !== imageIdToRemove));
     }
 
-    return { images, addImage, removeImage };
+    return { favouritedImages, addImage, removeImage };
 
 }
 
