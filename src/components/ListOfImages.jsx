@@ -1,17 +1,17 @@
 import useFetchData from '../customHooks/useFetchData';
 import useSrollToBottom from '../customHooks/useSrollToBottom';
 import useHandleFavourites from '../customHooks/useHandleFavourites';
-import { useEffect } from 'react';
 
 export default function ListOfImages() {
     const page = useSrollToBottom();
     const fetchedImages = useFetchData(page);
     const { favouritedImages, addImage, removeImage } = useHandleFavourites();
 
-    useEffect(() => {
-        console.log('ListOfImages mounted');
-        return () => console.log('ListOfImages unmounted');
-    }, []);
+    const favouritedImagesIds = favouritedImages.map((img) => img.id);
+
+    const fetchedImagesWithoutFavourited = fetchedImages.filter(
+        (img) => !favouritedImagesIds.includes(img.id)
+    );
 
     const handleFavourite = (img) => {
         addImage(img);
@@ -42,7 +42,7 @@ export default function ListOfImages() {
                     </div>
                 </div>
             ))}
-            {fetchedImages?.map((img, index) => (
+            {fetchedImagesWithoutFavourited?.map((img, index) => (
                 <div key={img.id + '-' + index} className="images-list">
                     <div className="image-box">
                         <img src={img.src.medium} alt="" className="image" />
