@@ -5,7 +5,7 @@ const apiKey = process.env.REACT_APP_PEXELS_API_KEY;
 const useFetchData = (page) => {
     console.log("useFetchData initialized");
 
-    const [imgSrc, setImgSrc] = useState([]);
+    const [fetchedImages, setFetchedImages] = useState([]);
 
     useEffect(() => {
         console.log("useFetchData initialized");
@@ -24,7 +24,7 @@ const useFetchData = (page) => {
                 }
                 const data = await response.json();
                 if (data && data.photos) {
-                    setImgSrc((prevImgSrc) => [...prevImgSrc, ...data.photos]);
+                    setFetchedImages((prevFetchedImages) => [...prevFetchedImages, ...data.photos]);
                 }
             } catch (error) {
                 console.error('error fetching image:', error);
@@ -32,7 +32,7 @@ const useFetchData = (page) => {
         };
         fetchData();
     }, [page]);
-    return imgSrc;
+    return fetchedImages;
 }
 
 export default useFetchData;

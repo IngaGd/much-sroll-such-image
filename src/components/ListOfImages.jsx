@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 export default function ListOfImages() {
     const page = useSrollToBottom();
-    const imgSrc = useFetchData(page);
+    const fetchedImages = useFetchData(page);
     const { images, addImage, removeImage } = useHandleFavourites();
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export default function ListOfImages() {
                     </div>
                 </div>
             ))}
-            {imgSrc?.map((img, index) => (
+            {fetchedImages?.map((img, index) => (
                 <div key={img.id + '-' + index} className="images-list">
                     <div className="image-box">
                         <img src={img.src.medium} alt="" className="image" />
