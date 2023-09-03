@@ -3,13 +3,10 @@ import { useEffect, useState } from "react";
 const apiKey = process.env.REACT_APP_PEXELS_API_KEY;
 
 const useFetchData = (page) => {
-    console.log("useFetchData initialized");
 
     const [fetchedImages, setFetchedImages] = useState([]);
 
     useEffect(() => {
-        console.log("useFetchData initialized");
-        console.log('Starting fetch for page:', page);
         const fetchData = async () => {
             try {
                 const response = await fetch(
@@ -24,19 +21,27 @@ const useFetchData = (page) => {
                 }
                 const data = await response.json();
                 if (data && data.photos) {
+                    setFetchedImages(prevFethcedImages => {
+                        const oldAndNewImages = [...prevFethcedImages, ...data.photos];
 
-                    const oldAndNewImages = [...fetchedImages, ...data.photos]
+                        const uniqueIdsSet = new Set();
+                        const uniqueImages = [];
 
-                    const uniqueImages = oldAndNewImages.filter((img, index, self) =>
-                        index === self.findIndex((t) => (t.id === img.id)));
-                    setFetchedImages(uniqueImages);
+                        for (const img of oldAndNewImages) {
+                            if (!uniqueIdsSet.has(img.id)) {
+                                uniqueIdsSet.add(img.id);
+                                uniqueImages.push(img);
+                            }
+                        }
+                        return uniqueImages;
+                    });
                 }
             } catch (error) {
                 console.error('error fetching image:', error);
             }
         };
         fetchData();
-    }, [page, fetchedImages]);
+    }, [page]);
     return fetchedImages;
 }
 
