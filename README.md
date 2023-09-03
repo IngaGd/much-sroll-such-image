@@ -1,3 +1,14 @@
+To start the app, open your Visual Studio Code terminal and enter the following commands:
+
+1. cd much-srcoll-such-image (then press Enter)
+2. npm start (then press Enter).
+
+For more information on how the React project runs, please refer to the statements highlighted in blue below.
+
+The app fetches images from [Pexel](https://www.pexels.com/api/documentation/). To get started,
+please create an account at Pexels and obtain you API key at [Pexels API](https://www.pexels.com/api/).
+Insert this key into the environment variable file (.env).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
