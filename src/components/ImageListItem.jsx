@@ -9,7 +9,14 @@ export default function ImageListItem({
     return (
         <div key={img.id} className="images-list">
             <div className="image-box">
-                <img src={img.src.medium} alt={img.alt} className="image" />
+                <picture>
+                    <source
+                        media="(min-width: 71.25em)"
+                        srcSet={img.src.large}
+                    />
+                    <source media="(min-width: 48em)" srcSet={img.src.medium} />
+                    <img src={img.src.tiny} alt={img.alt} className="image" />
+                </picture>
                 {isFavorited ? (
                     <figcaption className="caption-liked">
                         <p>Favourited</p>
