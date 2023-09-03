@@ -15,7 +15,12 @@ export default function ImageListItem({
                         srcSet={img.src.large}
                     />
                     <source media="(min-width: 48em)" srcSet={img.src.medium} />
-                    <img src={img.src.tiny} alt={img.alt} className="image" />
+                    <img
+                        src={img.src.tiny}
+                        alt={img.alt}
+                        className="image"
+                        loading="lazy"
+                    />
                 </picture>
                 {isFavorited ? (
                     <figcaption className="caption-liked">
