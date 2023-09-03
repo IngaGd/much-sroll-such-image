@@ -5,16 +5,13 @@ const useSrollToBottom = () => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        console.log("useScrollToBottom initialized");
         const handleScroll = () => {
             if (
                 window.innerHeight + window.scrollY >=
                 document.body.offsetHeight
             ) {
-                console.log("You're at the bottom of the page!");
                 setPage(prevPage => {
                     const newPage = prevPage + 1;
-                    console.log('scrolltobottom', newPage);
                     return newPage;
                 });
             }

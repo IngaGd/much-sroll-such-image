@@ -18,6 +18,7 @@ export default function ListOfImages() {
         <section className="container">
             {favouritedImages?.map((img) => (
                 <ImageListItem
+                    key={img.id}
                     img={img}
                     isFavorited={true}
                     onUnfavourite={removeImage}
