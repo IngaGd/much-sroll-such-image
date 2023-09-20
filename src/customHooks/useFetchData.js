@@ -16,7 +16,7 @@ const useFetchData = (scrolledToBottom) => {
         const fetchData = async () => {
             try {
                 console.log('page: ', page);
-                const perPage = (page === 1) ? 12 : 6;
+                const perPage = (page === 1) ? 24 : 12;
                 const response = await fetch(
                     `https://api.pexels.com/v1/curated?page=${page}&per_page=${perPage}`,
                     {
