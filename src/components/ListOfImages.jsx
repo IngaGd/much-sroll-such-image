@@ -4,8 +4,8 @@ import useHandleFavourites from '../customHooks/useHandleFavourites';
 import ImageListItem from './ImageListItem';
 
 export default function ListOfImages() {
-    const page = useSrollToBottom();
-    const fetchedImages = useFetchData(page);
+    const scrolledToBottom = useSrollToBottom();
+    const fetchedImages = useFetchData(scrolledToBottom);
     const { favouritedImages, addImage, removeImage } = useHandleFavourites();
 
     const favouritedImagesIds = favouritedImages.map((img) => img.id);
@@ -24,9 +24,9 @@ export default function ListOfImages() {
                     onUnfavourite={removeImage}
                 />
             ))}
-            {fetchedImagesWithoutFavourited?.map((img, index) => (
+            {fetchedImagesWithoutFavourited?.map((img) => (
                 <ImageListItem
-                    key={img.id + '-' + index}
+                    key={img.id}
                     img={img}
                     isFavorited={false}
                     onFavourite={addImage}

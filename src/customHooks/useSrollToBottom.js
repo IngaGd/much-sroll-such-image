@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
 
 const useSrollToBottom = () => {
-
-    const [page, setPage] = useState(1);
+    const [scrolledToBottom, setScrolledToBottom] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             if (
                 window.innerHeight + window.scrollY >=
-                document.body.offsetHeight
+                document.body.offsetHeight - 100
             ) {
-                setPage(prevPage => {
-                    const newPage = prevPage + 1;
-                    return newPage;
-                });
+                if (!scrolledToBottom) {
+                    setScrolledToBottom(true);
+                }
+            } else {
+                if (scrolledToBottom) {
+                    setScrolledToBottom(false);
+                }
             }
-        }
+        };
+
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
+    }, [scrolledToBottom]);
 
-    }, []);
-
-    return page;
-}
+    return scrolledToBottom;
+};
 
 export default useSrollToBottom;
